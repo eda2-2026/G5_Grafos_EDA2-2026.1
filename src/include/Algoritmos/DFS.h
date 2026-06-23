@@ -6,12 +6,12 @@
  * DFS — Busca em Profundidade
  * ---------------------------
  * Avança o máximo possível por um caminho antes de retroceder. Usa a
- * PILHA (Stack). Implementação ITERATIVA: empilhamos pares (nó, pai) e,
+ * pilha. Implementação iterativa: empilhamos pares (nó, pai) e,
  * ao desempilhar, registramos o pai que realmente levou àquele nó — assim
  * o caminho reconstruído é sempre válido.
  *
  * Observação: o DFS NÃO garante o caminho mais curto; ele encontra
- * *um* caminho. É ótimo para comparar com BFS/Dijkstra no relatório.
+ * um caminho.
  *
  * Complexidade: O(V + E).
  */

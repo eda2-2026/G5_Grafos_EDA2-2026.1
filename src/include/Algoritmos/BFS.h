@@ -7,10 +7,7 @@
  * BFS — Busca em Largura
  * ----------------------
  * Explora o grafo em "ondas", visitando todos os vizinhos de distância 1,
- * depois 2, e assim por diante. Usa a FILA (Queue).
- *
- * Garantia: em grafos NÃO PONDERADOS (todas as arestas com peso igual),
- * encontra o caminho com o MENOR NÚMERO DE ARESTAS.
+ * depois 2, e assim por diante. Usa a fila.
  *
  * Complexidade: O(V + E).
  */

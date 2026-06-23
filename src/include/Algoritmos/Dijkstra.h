@@ -5,12 +5,12 @@
 /**
  * Dijkstra — Caminho de menor custo
  * ---------------------------------
- * Encontra o caminho de MENOR CUSTO TOTAL em grafos com pesos não
- * negativos. Usa a FILA DE PRIORIDADE (min-heap) para sempre expandir
+ * Encontra o caminho de menor custo total em grafos com pesos não
+ * negativos. Usa a fila de prioridade (min-heap) para sempre expandir
  * o nó com a menor distância acumulada conhecida.
  *
  * Em um labirinto onde todos os pesos são 1, o resultado coincide com o
- * do BFS. A diferença aparece quando há TERRENOS com custos diferentes
+ * do BFS. A diferença aparece quando há terrenos com custos diferentes
  * (veja Maze::setCost) — aí o Dijkstra desvia da lama, enquanto o BFS
  * apenas conta arestas.
  *

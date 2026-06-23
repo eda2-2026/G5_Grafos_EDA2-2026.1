@@ -26,10 +26,9 @@ struct ResultadoDaBusca {
 /**
  * AlgoritmoDeBusca (classe abstrata)
  * ---------------------------------
- * Define a INTERFACE comum a BFS, DFS e Dijkstra. Graças ao método
- * virtual puro solve(), podemos tratar qualquer algoritmo de forma
- * polimórfica (ex.: medir tempo de todos com a mesma função). Esse é o
- * ponto central de orientação a objetos do projeto.
+ * Define a interface comum a BFS, DFS e Dijkstra. Graças ao método
+ * virtual puro solve(), todos os algoritmos são tratados de forma
+ * polimórfica (ex.: medir tempo de todos com a mesma função).
  */
 class AlgoritmoDeBusca {
 protected:
