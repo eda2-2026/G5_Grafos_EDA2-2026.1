@@ -5,7 +5,7 @@
  * VetorDinamico<T>
  * ----------------
  * Vetor dinâmico implementado do zero (sem usar std::vector).
- * Serve de base para a PriorityQueue e para os vetores auxiliares
+ * Serve de base para a fila de prioridade e para os vetores auxiliares
  * usados pelos algoritmos (visitados, pais, distâncias, etc.).
  *
  * Crescimento amortizado O(1): dobra a capacidade quando enche.

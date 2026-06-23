@@ -2,12 +2,12 @@
 #include <cstddef>
 
 /**
- * Queue<T>  (Fila — FIFO)
+ * Fila — FIFO
  * -----------------------
- * Implementada do zero com lista ligada (ponteiros para início e fim).
- * É a estrutura que define o comportamento da BUSCA EM LARGURA (BFS):
+ * Implementada com lista ligada (ponteiros para início e fim).
+ * É a estrutura que define o comportamento da busca em largura (BFS):
  * o primeiro nó descoberto é o primeiro a ser expandido, o que garante
- * encontrar o caminho com MENOS ARESTAS em grafos não ponderados.
+ * encontrar o caminho com menos arestas em grafos não ponderados.
  *
  * Todas as operações são O(1).
  */

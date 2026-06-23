@@ -2,9 +2,9 @@
 #include "../EstruturasDeDados/VetorDinamico.h"
 
 /**
- * Edge (Aresta)
+ * Aresta
  * -------------
- * Representa uma ligação direcionada para o nó 'destino' com um 'peso'.
+ * Representa uma ligação direcionada para o nó destino com um peso.
  * Em um labirinto sem terrenos especiais, todos os pesos valem 1.
  */
 struct Aresta {
@@ -13,10 +13,10 @@ struct Aresta {
 };
 
 /**
- * Graph (Grafo)
+ * Grafo
  * -------------
- * Grafo representado por LISTA DE ADJACÊNCIAS.
- * Cada nó é identificado por um inteiro de 0 a (nodeCount - 1).
+ * Grafo representado por lista de adjacências.
+ * Cada nó é identificado por um inteiro de 0 a (conategemDeNos - 1).
  *
  * No nosso projeto, cada célula caminhável do labirinto vira um nó, e
  * células vizinhas (cima/baixo/esquerda/direita) ficam ligadas por arestas.

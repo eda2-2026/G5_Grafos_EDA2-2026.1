@@ -2,10 +2,10 @@
 #include <cstddef>
 
 /**
- * Stack<T>  (Pilha — LIFO)
+ * Pilha — LIFO
  * ------------------------
- * Implementada do zero com lista ligada simples.
- * É a estrutura que define o comportamento da BUSCA EM PROFUNDIDADE (DFS):
+ * Implementada com lista encadeada simples.
+ * É a estrutura que define o comportamento da busca em profundidade (DFS):
  * o último nó descoberto é o primeiro a ser expandido.
  *
  * Todas as operações são O(1).

@@ -3,18 +3,18 @@
 #include <cstddef>
 
 /**
- * PriorityQueue<T>  (Fila de prioridade de mínimo)
+ * Fila de prioridade de mínimo
  * -------------------------------------------------
- * Implementada do zero como um MIN-HEAP BINÁRIO sobre o VetorDinamico.
+ * Implementada do zero como um min-heap binário sobre o VetorDinamico.
  * É a estrutura que torna o algoritmo de DIJKSTRA eficiente: sempre
- * retorna o elemento de MENOR prioridade (menor distância acumulada).
+ * retorna o elemento de menor prioridade (menor distância acumulada).
  *
  * Em um heap representado por array (índices base 0):
  *   - pai de i ........ (i - 1) / 2
  *   - filho esquerdo .. 2*i + 1
  *   - filho direito ... 2*i + 2
  *
- * Complexidade: push e pop em O(log n); top em O(1).
+ * Complexidade: enfilera e desenfilera em O(log n); top em O(1).
  */
 template <typename T>
 class FilaDePrioridade {
