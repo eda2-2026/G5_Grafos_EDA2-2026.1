@@ -7,14 +7,9 @@
 #include "include/Grafo/Grafo.h"
 #include "include/Algoritmos/BFS.h"
 #include "include/Algoritmos/DFS.h"
-#include "include/Algoritmos/Dijkstra.h"
 #include "include/Algoritmos/ComponentesConectados.h"
 #include "include/Algoritmos/GrafoReverso.h"
 #include "include/Utils/Timer.h"
-
-#ifdef WITH_SFML
-#include "Visualizacao/MazeRenderer.h"
-#endif
 
 static ResultadoDaBusca runTimed(AlgoritmoDeBusca& algoritmo, int inicio, int fim) {
     Timer t;
@@ -36,21 +31,17 @@ int main() {
     const unsigned SEED = 2025;
 
     std::cout << "==========================================================\n";
-    std::cout << "  Labirintos como grafos:  BFS  x  DFS  x  Dijkstra\n";
+    std::cout << "  Labirintos como grafos:  BFS  x  DFS\n";
     std::cout << "==========================================================\n";
     std::printf("Gerando e resolvendo %d tipos de labirinto (%dx%d), seed %u\n\n",
                 MazeGenerator::typeCount(), 2 * H + 1, 2 * W + 1, SEED);
 
-    std::printf("%-3s %-22s | %-13s | %-13s | %-13s\n",
-                "#", "TIPO", "BFS", "DFS", "DIJKSTRA");
-    std::printf("%-3s %-22s | %-13s | %-13s | %-13s\n",
-                "", "", "passos custo", "passos custo", "passos custo");
-    for (int i = 0; i < 78; ++i) std::cout << '-';
+    std::printf("%-3s %-22s | %-13s | %-13s\n",
+                "#", "TIPO", "BFS", "DFS");
+    std::printf("%-3s %-22s | %-13s | %-13s\n",
+                "", "", "passos custo", "passos custo");
+    for (int i = 0; i < 62; ++i) std::cout << '-';
     std::cout << "\n";
-
-#ifdef WITH_SFML
-    MazeRenderer renderer(24);
-#endif
 
     for (int i = 0; i < MazeGenerator::typeCount(); ++i) {
         MazeType tipo = MazeGenerator::typeAt(i);
@@ -60,33 +51,22 @@ int main() {
         int inicio = maze.startId();
         int fim    = maze.endId();
 
-        BFS      bfs(graph);
-        DFS      dfs(graph);
-        Dijkstra dij(graph);
+        BFS bfs(graph);
+        DFS dfs(graph);
 
         ResultadoDaBusca rBfs = runTimed(bfs, inicio, fim);
         ResultadoDaBusca rDfs = runTimed(dfs, inicio, fim);
-        ResultadoDaBusca rDij = runTimed(dij, inicio, fim);
 
         long realBfs = custoReal(maze, rBfs.caminho);
         long realDfs = custoReal(maze, rDfs.caminho);
-        long realDij = custoReal(maze, rDij.caminho);
 
-        std::printf("%-3d %-22s | %5zu %6ld | %5zu %6ld | %5zu %6ld\n",
+        std::printf("%-3d %-22s | %5zu %6ld | %5zu %6ld\n",
                     i + 1, MazeGenerator::typeName(tipo),
                     rBfs.caminho.size(), realBfs,
-                    rDfs.caminho.size(), realDfs,
-                    rDij.caminho.size(), realDij);
-
-#ifdef WITH_SFML
-        int cena = renderer.addMaze(MazeGenerator::typeName(tipo), maze);
-        renderer.addResult(cena, "BFS", rBfs);
-        renderer.addResult(cena, "DFS", rDfs);
-        renderer.addResult(cena, "Dijkstra", rDij);
-#endif
+                    rDfs.caminho.size(), realDfs);
     }
 
-    for (int i = 0; i < 78; ++i) std::cout << '-';
+    for (int i = 0; i < 62; ++i) std::cout << '-';
     std::cout << "\n\n";
 
     std::cout << "==========================================================\n";
@@ -96,7 +76,6 @@ int main() {
     Labirinto mazeExemplo = MazeGenerator::generate(MazeType::RecursiveBacktracker, H, W, SEED);
     Grafo grafoExemplo    = mazeExemplo.toGraph();
 
-    // --- Componentes Conectados ---
     ComponentesConectados cc(grafoExemplo);
     int totalComponentes = cc.contarComponentes();
     std::cout << "Labirinto Recursive Backtracker (" << 2*H+1 << "x" << 2*W+1 << "):\n";
@@ -115,7 +94,6 @@ int main() {
     std::cout << "  (Todos os caminhos do labirinto se conectam -- confirma\n";
     std::cout << "   que o labirinto e solucavel de qualquer ponto.)\n\n";
 
-    // --- Grafo Reverso ---
     Grafo reverso = GrafoReverso::construir(grafoExemplo);
     std::cout << "Grafo Reverso do Backtracker:\n";
     std::cout << "  Nos no original: " << grafoExemplo.contagemDeNos() << "\n";
@@ -135,28 +113,13 @@ int main() {
     std::cout << "\n";
     std::cout << "  (No reverso, as arestas que SAIAM do no agora CHEGAM nele.)\n\n";
 
-    std::cout 
-        "Leitura: 'custo' = custo REAL do caminho (peso do terreno somado).\n"
-        "Sem lama, custo == passos-1, e os tres coincidem em custo (BFS=Dijkstra).\n"
-        "Em 'Braided' e 'Salas', o DFS acha um caminho bem mais LONGO (ha varias\n"
-        "rotas e ele nao busca a mais curta). Em 'Terreno com Lama', o BFS faz\n"
-        "menos passos mas ATRAVESSA a lama (custo alto); o Dijkstra DESVIA: mais\n"
-        "passos, porem custo real menor.\n";
+    std::cout << "Leitura: 'custo' = custo REAL do caminho (peso do terreno somado).\n";
+    std::cout << "Sem lama, custo == passos-1, BFS e DFS coincidem em labirintos perfeitos.\n";
+    std::cout << "Em 'Braided' e 'Salas', o DFS acha um caminho bem mais longo pois\n";
+    std::cout << "nao busca o caminho mais curto -- apenas encontra um caminho qualquer.\n";
 
-#ifdef WITH_SFML
-    std::cout 
-        "\nAbrindo a janela grafica...\n"
-        "  SETAS <- / ->  : troca o TIPO de labirinto\n"
-        "  1 / 2 / 3      : BFS / DFS / Dijkstra\n"
-        "  R              : reinicia a animacao\n"
-        "  + / -          : aumenta / diminui a velocidade\n"
-        "  ESC            : sair\n";
-    renderer.run();
-#else
-    std::cout 
-        "\n(Visualizacao grafica desabilitada.\n"
-        " Compile com -DWITH_SFML=ON no CLion/CMake para ver a animacao.)\n";
-#endif
+    std::cout << "\n(Visualizacao grafica desabilitada.\n";
+    std::cout << " Compile com -DWITH_SFML=ON no CLion/CMake para ver a animacao.)\n";
 
     return 0;
 }
