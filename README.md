@@ -35,27 +35,27 @@ comportamento dos algoritmos em diferentes estruturas de grafo.
 
 ## Vídeo de Apresentação
 
-(a ser adicionado)
+https://www.youtube.com/watch?v=B_wanvvpzsQ
 
 ## Screenshots
 
 ### Estrutura do Projeto
-![Estrutura do Projeto](screenshots/estrutura.png)
+![Estrutura do Projeto](screenshots/2_estruturaProjeto.png)
 
 ### Grafo — Lista de Adjacência
-![Grafo](screenshots/grafo.png)
+![Grafo](screenshots/3_listaDeAdjacenciasCodigo.png)
 
 ### BFS — Busca em Largura
-![BFS](screenshots/bfs.png)
+![BFS](screenshots/BFS_h.png)
 
 ### DFS — Busca em Profundidade
-![DFS](screenshots/dfs.png)
+![DFS](screenshots/DFS_h.png)
 
 ### Componentes Conectados
-![Componentes Conectados](screenshots/componentes.png)
+![Componentes Conectados](screenshots/ComponentesConectados.png)
 
 ### Grafo Reverso
-![Grafo Reverso](screenshots/grafo_reverso.png)
+![Grafo Reverso](screenshots/grafoReverso.png)
 
 ### Resultado no Terminal
 ![Terminal](screenshots/terminal.png)
